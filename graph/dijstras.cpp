@@ -11,9 +11,7 @@ using namespace std;
 struct Node
 {
 	int vertex;
-	int distance;
-
- 
+	int distance; 
 };
 
 class HeapC
@@ -26,9 +24,8 @@ class HeapC
 public:
 	HeapC(int c);
 	int incrementVal;
-	void insertKey(Node val);
-	//map<int,int> vertexDistance; // distance of vertex from source
-	map<int,int> IndexMap; // vertex and index
+	void insertKey(Node val); // Inserts node into heap
+	map<int,int> IndexMap; // vertex and its index map
 	int left(int index);
 	int right(int index);
 	int parent(int index);
@@ -36,8 +33,6 @@ public:
 	void swap(Node &a, Node &b);
 	void decreaseKey(int index, Node val);
 	void MinHeapify(int index);
-	//void deleteKey(int index);
-	//int getMin() {return harray[0];}
 };
 
 
@@ -86,7 +81,7 @@ void HeapC::insertKey(Node v)
 
 	incrementVal++;
 	harray[incrementVal] = v;
-	//vertexDistance[v.vertex]=v.distance;
+	
 	IndexMap[v.vertex] = incrementVal;
 	int i =  incrementVal;
 	while(i !=0 && harray[parent(i)].distance > harray[i].distance)
@@ -95,7 +90,7 @@ void HeapC::insertKey(Node v)
 		i = parent(i);
 	}
 
-	//incrementVal++;
+	
 }
 
 //O(log(n))
@@ -136,12 +131,12 @@ if(incrementVal == 0)
 	return harray[0];	
 } 
 	Node min = harray[0];
-	//cout<<harray[incrementVal]<<endl;
+	
 	harray[0]=harray[incrementVal];
 	IndexMap[harray[incrementVal].vertex]=0;
 	incrementVal--;
-	//vertexDistance.erase(min.vertex);
-	//cout<<vertexDistance.size()<<endl;
+	
+	
 	MinHeapify(0);
 	return min;
 }
@@ -150,7 +145,7 @@ void HeapC::decreaseKey(int index,Node newVal)
 {
 
 	harray[index] = newVal;
-	//vertexDistance[newVal.vertex] = newVal.distance;
+	
 	int i = index;
 	while(i !=0 && harray[parent(i)].distance > harray[i].distance)
 	{
