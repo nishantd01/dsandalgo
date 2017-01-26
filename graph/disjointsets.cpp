@@ -69,9 +69,14 @@ int main()
 {
 	DisjointSet dsObj(6);
 	dsObj.Union(0,1);
+	dsObj.Union(1,2);
+	dsObj.Union(3,4);
+	dsObj.Union(5,6);
+	dsObj.Union(4,5);
+	dsObj.Union(2,5);
 
-	int res = dsObj.findset(1);
-	cout<<" res  "<<res<<endl;
+	int res = dsObj.findset(6);
+	cout<<" representative   "<<res<<endl;
 
 
 
