@@ -38,17 +38,17 @@ void DisjointSet::Union(int a,int b)
 	int repB = findset(b);
 
 	if(repA == repB) return;
-	if(a<b)
+	if(rank[repA] >= rank[repB])
 	{
-		rank[a]= rank[a]+1;
-		rank[b]=0;
-		parent[b] = a;
+		rank[repA] = rank[repA]+1;
+		parent[repB] = repA;
+		rank[repB]=0;
 	}
 	else
 	{
-		rank[b]= rank[b]+1;
-		rank[a] = 0;
-		parent[a] = b;
+		rank[repB] = rank[repB]+1;
+		parent[repA] = repB;
+		rank[repA]=0;
 	}
 }
 
@@ -73,7 +73,7 @@ int main()
 	dsObj.Union(3,4);
 	dsObj.Union(5,6);
 	dsObj.Union(4,5);
-	dsObj.Union(2,5);
+	dsObj.Union(2,5); 
 
 	int res = dsObj.findset(6);
 	cout<<" representative   "<<res<<endl;
