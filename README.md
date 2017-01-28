@@ -1,2 +1,2 @@
 # dsandalgo
-Contains various data structures and their implementation in c++
+Contains various data structures, algorithms  and their implementation in c++
